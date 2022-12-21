@@ -9,5 +9,26 @@ Object.assign(h1Element.style, {
     backgroundColor: 'gray'
 })
 
+
 root.appendChild(h1Element)
 
+// DOM
+
+let h2DOM =    document.createElement('h2')
+
+h2DOM.innerText = '英語を勉強して日本語を勉強してITを勉強しています'
+h2DOM.style.color = 'red'
+h2DOM.className = 'Nihon'
+
+document.body.appendChild(h2DOM)
+
+
+// React
+
+let reactDOM = React.createElement('h4', {
+    title: 'Hello',
+    className: 'fine'
+}, 'でもITは難しいですか')
+
+
+console.log(reactDOM)
