@@ -55,7 +55,7 @@ divDom.appendChild(pDOM)
 
 document.body.appendChild(divDom)
 
-
+ 
 // Reat //
 
 let divReact = React.createElement(
@@ -68,4 +68,3 @@ let divReact = React.createElement(
 )
 
 console.log(divReact)
-
