@@ -1,70 +1,71 @@
-// DOM
-
-let ulDOM = document.createElement('ul')
-ulDOM.className = 'file'
-ulDOM.style = 'color: red; font-size: 20px'
-
-
-let liDOM1 = document.createElement('li')
-liDOM1.innerText = '日本語を勉強してる'
-
-
-let liDOM2 = document.createElement('li')
-liDOM2.innerText = 'ITを勉強して英語を勉強してる'
-liDOM2.style = 'color: green'
-
-ulDOM.appendChild(liDOM1)
-ulDOM.appendChild(liDOM2)
-
-document.body.appendChild(ulDOM)
-
-
-
-//React
-
-
-let ulReact = React.createElement(
-    'ul',
-    {
-        id: 'name',
-
-    }, 
-     React.createElement ('li', {class: 'react', id: 'Name'}, 'Javascript'),
-     React.createElement ('li', null, 'ReactJS')
-
-    )
-
-console.log(ulReact)
-
-
-// DOM
-let divDom = document.createElement('div')
-divDom.className = 'post-Items'
-
-let h2DOM = document.createElement('h2')
-h2DOM.innerText = '今日は11時に起きました体が悪いですから。こぜん彼女といしょうに飲みました'
-h2DOM.style = 'color: gray'
-h2DOM.title = 'Hoc ReactJS form zero to Hero'
-
-let pDOM = document.createElement('p')
-pDOM.innerText = '明日5時に起くつもりです。今朝ITを勉強して英語を勉強して。がんぱってください'
-
-
-divDom.appendChild(h2DOM)
-divDom.appendChild(pDOM)
-
-document.body.appendChild(divDom)
-
- 
-// Reat //
+let container = document.getElementById('root')
 
 let divReact = React.createElement(
     'div',
     {
         className: 'Post-Items'
     }, 
-    React.createElement('h2', {title: 'Hoc React at f8'}, 'Hoc ReactJS'),
-    React.createElement('p', null, 'learn ReactJS for zero to hero')
+    React.createElement('h2', {title: 'Hoc React at f8', color: 'red'}, 'ITを勉強してる'),
+    React.createElement('p', null, 'がんぱってください')
 )
 
-console.log(divReact)
+    let root = ReactDOM.createRoot(container)
+    root.render(divReact)
+
+
+
+
+
+// React h1
+let root2 = document.getElementById('root2')
+
+let h1React = React.createElement(
+    'h1', 
+    {
+        title: 'hello',
+        className: 'heading',
+    },
+    'Hello guys'
+)
+
+let h1 = ReactDOM.createRoot(root2)
+h1.render(h1React)
+
+
+let ulDom = React.createElement(
+    'ul',
+    null,
+    React.createElement('li', {}, 'Javascript'),
+    React.createElement('li', {}, 'ReactJS')
+)
+
+let ul = ReactDOM.createRoot(root3)
+ul.render(ulDom)
+
+
+// const ul = <ul>
+//     <li>Javascript</li>
+//     <li>ReactJs</li>
+//     <li>NodeJS bassic</li>
+// </ul>
+
+// let ulReact = ReactDOM.createRoot(root4)
+// ulReact.render(ul)
+
+
+// const course = [
+//     {
+//         name: HTMLAllCollection.css,
+//     },
+//     {
+//         name: 'Responsive web design'
+//     },
+//     {
+//         name: 'ReactJS'
+//     }
+// ]
+
+// let ulCourse = ReactDOM.createRoot(root4)
+// ulCourse.render(course)
+
+
