@@ -1,28 +1,34 @@
 import { toBeInTheDOM } from '@testing-library/jest-dom/dist/matchers'
 import { useState } from 'react'
 
-const order = [100,200,300]
+const gifts = [
+  'CPU I9',
+  'MACBOOK AIR M1',
+  'Keychorn k4',
+  'ReactJs',
+  'logitech'
+]
+
 
 function App() {
 
-  const [counter, setCounter] = useState( () => {
-      const total = order.reduce((cur, urr) => cur + urr)
-      console.log(total)
-      return total
-  })
+  const [gift, setGift] = useState()
   
-  const handlerCounter = () => {
-      setCounter (counter + 1)
-
+  const  handleGift = () => {
+      const index = Math.floor(Math.random()* gifts.length)
       
+      setGift(gifts[index])
+
   }
 
   return (
-      <div className='title' style={{padding: 20}}>
-          <h1>{counter}</h1>
-          <button onClick={handlerCounter} >Increase</button>
-      </div>
+    <div>
+        <h1>{gift || 'NO GIFTS'}</h1>
+        <button onClick = {handleGift} >Lay thuong</button>
+    </div>
+
   )
+  
 
 }
 
