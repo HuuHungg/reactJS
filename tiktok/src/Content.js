@@ -1,42 +1,19 @@
-import { useEffect, useState  } from 'react'
+import {memo} from 'react'
 
+function Content ({onIncrease}) {
 
-
-function Content () {
-
-    const [avatar, setAvatar] = useState()
-    useEffect(() => {
-        // Cleanup
-        return () => {
-           avatar && URL.revokeObjectURL(avatar.preview)
-        }
-
-    }, [avatar])
-
-
-    const handlePreviewAvatar = (e) => {
-        const file = e.target.files[0]
-        file.preview = URL.createObjectURL(file)
-        setAvatar(file)
-
-    }
+    console.log('re-render')
 
     return (
-        <div>
-                <input 
-                    type= "file"
-                    onChange={handlePreviewAvatar}
-                />
-                {
-                    avatar && (
-                    <img src= {avatar.preview} alt= "" width = "80%" />
-                )}
-
-        </div>
-
+        <>
+            <h1>毎日ITを勉強してるでも難しいですか  </h1>
+            <button onClick = {onIncrease}>Click me</button>
+        </>
     )
 
 }
 
-export default Content
+export default memo(Content)
+
+
 

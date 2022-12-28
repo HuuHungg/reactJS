@@ -1,17 +1,68 @@
-import { useState } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import Content from './Content'
 
 function App() {
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState ('')
+    const [products, setProducts] = useState([])
+    
+    const nameRef = useRef()
 
-    const [show, setShow] = useState(false)
+    const handleSubmit = () => {  
+            setProducts([...products, {
+                name,
+                price: +price
+            }])
+            setName('')
+            setPrice('')
+
+            nameRef.current.focus()
+  }
+    
+    const total = useMemo(() => {
+        const result = products.reduce((result, prod) => {
+          console.log('Tinh toan lai')
+          return result + prod.price
+        }, 0)
+
+        return result
+
+    }, [products])
+    
+
+    console.log(products)
 
     return (
-      <div style={{padding: 20}}>
-          <button onClick={() => setShow(!show)} >Toggle</button>
-          { show && <Content />}
+      <div style={{padding: '10px 32px'}}>
+          <input 
+              ref={nameRef}
+              value={name}
+              placeholder= "Enter name..."
+              onChange={e => setName(e.target.value)}    
+          />
+          <br />
+        
+          <input 
+            value={price}
+            placeholder= "Enter price..."
+            onChange={e => setPrice(e.target.value)}
+          />
+
+          <button onClick={handleSubmit}>Add</button>
+
+          <br/>
+
+          Total: {total}
+
+          <ul>
+            {products.map((product, index) => (
+                <li key={index}>{product.name} - {product.price}</li>
+            ))}
+          </ul>
       </div>
     )
- 
+
+
 }
 
 export default App;
