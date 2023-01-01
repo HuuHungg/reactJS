@@ -1,125 +1,37 @@
-import { useState, useReducer, startTransition, useRef } from 'react';
-import Content from './Content'
-
-// 1.Init state
-const initState = {
-    job: '',
-    jobs: []
-}
-
-// 2. Action
-const SET_JOB = 'set_job'
-const ADD_JOB = 'add_job'
-const DELETE_JOB = 'delete_job' 
-
-const setJob = payload => {
-  return {
-      type: SET_JOB,
-      payload
-  }
-}
-
-
-const addJob = payload => {
-  return {
-      type: ADD_JOB,
-      payload
-  }
-}
-
-const deleteJob = payload => {
-      return {
-          type: DELETE_JOB,
-          payload
-      }
-}
-
-// 3. Reducer
- const reducer = (state, action) => {
-      console.log('Action: ', action)
-      console.log('Prev state: ', state)
-
-      let newState
-
-      switch(action.type) {
-          case SET_JOB: 
-              newState = {
-                  ...state,
-                  job: action.payload
-              }
-              break
-          case ADD_JOB:
-              newState = {
-                ...state,
-                job:'',
-                jobs: [...state.jobs, action.payload]
-              }
-              break
-          case DELETE_JOB:
-                const newJobs = [...state.jobs]
-
-                newJobs.splice(action.payload, 1)
-
-                newState = {
-                    ...state,
-                    jobs: newJobs
-                }
-                break
-          default:
-            throw new Error('Invalid action.')
-      }  
-
-      console.log('New state: ', newState)
-      
-      return newState 
- }
-
- // 4. Dispatch
+import { Routes, Route, Link } from 'react-router-dom'   
+import HomePage from './pages/Home'
+import NewsPage from './pages/New'
+import ContactPage from './pages/Contact'
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initState)
-  const {job, jobs} = state
-
-  const inputRef = useRef()
-
-  const handleSubmit = () => {
-      dispatch(addJob(job))
-      dispatch(setJob(''))
-
-      inputRef.current.focus()
-  }
-
-  return(
-      <div style={{padding: '0 20px'}}>
-        <h3>Todo</h3>
-        <input
-            ref= {inputRef}
-            value={job}
-            placeholder='Enter todo...'
-            onChange={e => {
-                dispatch(setJob(e.target.value))
-
-            }}
-        />
-        <button onClick={handleSubmit}>Add</button>
-        <ul>
-            {jobs.map((job, index )=> (
-                <li key={index} >
-                  {job}
-                      <span onClick={() => {
-                            dispatch(deleteJob(index))
-                      }}>
-                           &times;
-                      </span>
-                  </li>
-
-            ))}
-        </ul>
-      </div>
+    return (
+        <div className="app">       
+           <nav>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/news">News</Link>
+                </li>
+                <li>
+                    <Link to="/contact">Contact</Link>
+                </li>
+            </ul>
+           </nav>
+        
+           <Routes>
+                <Route path="/" element= {<HomePage />} />
+                <Route path="/news" element = {<NewsPage/>}/>
+                <Route path='/contact' element = {<ContactPage />}/>
+           </Routes>
+        
+        </div>
     )
+
+
 }
-
-
-export default App;
+export default App
+ 
 
 
